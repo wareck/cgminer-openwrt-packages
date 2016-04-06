@@ -11,7 +11,7 @@ include $(TOPDIR)/rules.mk
 PKG_NAME:=cgminer
 
 ifeq ($(CONFIG_CGMINER_AVALON4),y)
-	PKG_VERSION:=git-$(shell git ls-remote https://github.com/csa402/cgminer avalon4 | cut -f1 | cut -c1-7)
+	PKG_VERSION:=git-$(shell git ls-remote https://github.com/csa402/cgminer-gekko avalon4 | cut -f1 | cut -c1-7)
 	PKG_REV:=avalon4
 else
 	PKG_VERSION:=4.6.0
@@ -27,7 +27,7 @@ PKG_INSTALL:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_REV).tar.bz2
 ifeq ($(CONFIG_CGMINER_AVALON4),y)
-	PKG_SOURCE_URL:=git://github.com/csa402/cgminer.git
+	PKG_SOURCE_URL:=git://github.com/csa402/cgminer-gekko.git
 else
 	PKG_SOURCE_URL:=git://github.com/ckolivas/cgminer.git
 endif
