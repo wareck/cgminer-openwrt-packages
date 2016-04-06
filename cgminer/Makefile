@@ -17,9 +17,9 @@ else
 	PKG_VERSION:=4.6.0
 	PKG_REV:=06b44fcc2ed64a3e0d8288287d28176132433642
 endif
-ifeq ($(CONFIG_CGMINER_AVALON6),y)
-	PKG_VERSION:=git-$(shell git ls-remote https://github.com/csa402/cgminer avalon4 | cut -f1 | cut -c1-7)
-	PKG_REV:=avalon4
+ifeq ($(CONFIG_CGMINER_GEKKO),y)
+	PKG_VERSION:=git-$(shell git ls-remote https://github.com/csa402/cgminer-gekko.git master | cut -f1 | cut -c1-7)
+	PKG_REV:=d45928243b1e846a60a2a2f2c5c01784c35d83e1
 endif
 
 PKG_RELEASE:=1
@@ -31,8 +31,8 @@ ifeq ($(CONFIG_CGMINER_AVALON4),y)
 else
 	PKG_SOURCE_URL:=git://github.com/ckolivas/cgminer.git
 endif
-ifeq ($(CONFIG_CGMINER_AVALON6),y)
-	PKG_SOURCE_URL:=git://github.com/csa402/cgminer.git
+ifeq ($(CONFIG_CGMINER_GEKKO),y)
+	PKG_SOURCE_URL:=git://github.com/csa402/cgminer-gekko.git
 endif
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
@@ -78,8 +78,8 @@ endif
 ifeq ($(CONFIG_CGMINER_AVALON4),y)
 	CONFIGURE_ARGS += --enable-avalon4
 endif
-ifeq ($(CONFIG_CGMINER_AVALON6),y)
-	CONFIGURE_ARGS += --enable-avalon4
+ifeq ($(CONFIG_CGMINER_GEKKO),y)
+	CONFIGURE_ARGS += --enable-gekko
 endif
 
 ifeq ($(CONFIG_TARGET_brcm2708_RaspberryPi),)
@@ -118,11 +118,11 @@ ifeq ($(CONFIG_CGMINER_AVALON4),y)
 	$(CP)          $(FILES_DIR)/cgminer.avalon4.config         $(1)/etc/config/cgminer
 	$(INSTALL_BIN)          $(FILES_DIR)/mm-avalon4-upgrade             $(1)/usr/bin/mmupgrade
 endif
-ifeq ($(CONFIG_CGMINER_AVALON6),y)
-	$(INSTALL_BIN) $(FILES_DIR)/cgminer-avalon6-monitor        $(1)/usr/bin/cgminer-monitor
-	$(INSTALL_BIN) $(FILES_DIR)/cgminer.avalon6.init           $(1)/etc/init.d/cgminer
-	$(CP)          $(FILES_DIR)/cgminer.avalon6.config         $(1)/etc/config/cgminer
-	$(INSTALL_BIN)          $(FILES_DIR)/mm-avalon6-upgrade             $(1)/usr/bin/mmupgrade
+ifeq ($(CONFIG_CGMINER_GEKKO),y)
+	$(INSTALL_BIN) $(FILES_DIR)/cgminer-gekko-monitor        $(1)/usr/bin/cgminer-monitor
+	$(INSTALL_BIN) $(FILES_DIR)/cgminer.gekko.init           $(1)/etc/init.d/cgminer
+	$(CP)          $(FILES_DIR)/cgminer.gekko.config         $(1)/etc/config/cgminer
+	$(INSTALL_BIN)          $(FILES_DIR)/mm-dmaxl-upgrade             $(1)/usr/bin/mmupgrade
 endif
 endef
 
