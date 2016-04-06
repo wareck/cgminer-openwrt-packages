@@ -19,7 +19,7 @@ else
 endif
 ifeq ($(CONFIG_CGMINER_GEKKO),y)
 	PKG_VERSION:=git-$(shell git ls-remote https://github.com/csa402/cgminer-gekko.git master | cut -f1 | cut -c1-7)
-	PKG_REV:=d45928243b1e846a60a2a2f2c5c01784c35d83e1
+	PKG_REV:=3ec8dfbc5758624af297748f6c9141299f85c897
 endif
 
 PKG_RELEASE:=1
@@ -79,7 +79,7 @@ ifeq ($(CONFIG_CGMINER_AVALON4),y)
 	CONFIGURE_ARGS += --enable-avalon4
 endif
 ifeq ($(CONFIG_CGMINER_GEKKO),y)
-	CONFIGURE_ARGS += --enable-gekko
+	CONFIGURE_ARGS += --enable-gekko --enable-bflsc --enable-bitfury
 endif
 
 ifeq ($(CONFIG_TARGET_brcm2708_RaspberryPi),)
