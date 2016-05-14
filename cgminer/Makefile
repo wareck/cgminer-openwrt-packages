@@ -18,8 +18,8 @@ else
 	PKG_REV:=06b44fcc2ed64a3e0d8288287d28176132433642
 endif
 ifeq ($(CONFIG_CGMINER_GEKKO),y)
-	PKG_VERSION:=git-$(shell git ls-remote https://github.com/csa402/cgminer-gekko.git master | cut -f1 | cut -c1-7)
-	PKG_REV:=3ec8dfbc5758624af297748f6c9141299f85c897
+	PKG_VERSION:=git-$(shell git ls-remote https://github.com/wareck/cgminer-gekko.git master | cut -f1 | cut -c1-7)
+	PKG_REV:=2796394ca36bf3ce85be3790f3223b34f7729cef
 endif
 
 PKG_RELEASE:=1
@@ -27,12 +27,12 @@ PKG_INSTALL:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_REV).tar.bz2
 ifeq ($(CONFIG_CGMINER_AVALON4),y)
-	PKG_SOURCE_URL:=git://github.com/csa402/cgminer-gekko.git
+	PKG_SOURCE_URL:=git://github.com/wareck/cgminer-gekko.git
 else
 	PKG_SOURCE_URL:=git://github.com/ckolivas/cgminer.git
 endif
 ifeq ($(CONFIG_CGMINER_GEKKO),y)
-	PKG_SOURCE_URL:=git://github.com/csa402/cgminer-gekko.git
+	PKG_SOURCE_URL:=git://github.com/wareck/cgminer-gekko.git
 endif
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
