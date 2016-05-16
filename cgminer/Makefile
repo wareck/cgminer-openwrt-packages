@@ -22,6 +22,11 @@ ifeq ($(CONFIG_CGMINER_GEKKO),y)
 	PKG_REV:=2796394ca36bf3ce85be3790f3223b34f7729cef
 endif
 
+ifeq ($(CONFIG_CGMINER_DRAGON),y)
+        PKG_VERSION:=git-$(shell git ls-remote https://github.com/wareck/cgminer-dmaxl-zeus.git master | cut -f1 | cut -c1-7)
+        PKG_REV:=a45c83d718fce7b539575144832e887773bc4e5e
+endif
+
 PKG_RELEASE:=1
 PKG_INSTALL:=1
 
@@ -34,6 +39,10 @@ endif
 ifeq ($(CONFIG_CGMINER_GEKKO),y)
 	PKG_SOURCE_URL:=git://github.com/wareck/cgminer-gekko.git
 endif
+ifeq ($(CONFIG_CGMINER_DRAGON),y)
+        PKG_SOURCE_URL:=git://github.com/wareck/cgminer-dmaxl-zeus.git
+endif
+
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
 PKG_SOURCE_VERSION:=$(PKG_REV)
@@ -82,6 +91,10 @@ ifeq ($(CONFIG_CGMINER_GEKKO),y)
 	CONFIGURE_ARGS += --enable-gekko --enable-bflsc --enable-bitfury
 endif
 
+ifeq ($(CONFIG_CGMINER_DRAGON),y)
+        CONFIGURE_ARGS += --enable-zeus --enable-lketc --enable-scrypt
+endif
+
 ifeq ($(CONFIG_TARGET_brcm2708_RaspberryPi),)
 	CONFIGURE_ARGS += --without-curses
 endif
@@ -116,14 +129,22 @@ ifeq ($(CONFIG_CGMINER_AVALON4),y)
 	$(INSTALL_BIN) $(FILES_DIR)/cgminer-avalon4-monitor        $(1)/usr/bin/cgminer-monitor
 	$(INSTALL_BIN) $(FILES_DIR)/cgminer.avalon4.init           $(1)/etc/init.d/cgminer
 	$(CP)          $(FILES_DIR)/cgminer.avalon4.config         $(1)/etc/config/cgminer
-	$(INSTALL_BIN)          $(FILES_DIR)/mm-avalon4-upgrade             $(1)/usr/bin/mmupgrade
+	$(INSTALL_BIN)          $(FILES_DIR)/mm-avalon4-upgrade    $(1)/usr/bin/mmupgrade
 endif
 ifeq ($(CONFIG_CGMINER_GEKKO),y)
 	$(INSTALL_BIN) $(FILES_DIR)/cgminer-gekko-monitor        $(1)/usr/bin/cgminer-monitor
 	$(INSTALL_BIN) $(FILES_DIR)/cgminer.gekko.init           $(1)/etc/init.d/cgminer
 	$(CP)          $(FILES_DIR)/cgminer.gekko.config         $(1)/etc/config/cgminer
-	$(INSTALL_BIN)          $(FILES_DIR)/mm-dmaxl-upgrade             $(1)/usr/bin/mmupgrade
+	$(INSTALL_BIN)          $(FILES_DIR)/mm-dmaxl-upgrade    $(1)/usr/bin/mmupgrade
 endif
+ifeq ($(CONFIG_CGMINER_DRAGON),y)
+        $(INSTALL_BIN) $(FILES_DIR)/cgminer-dragon-monitor        $(1)/usr/bin/cgminer-monitor
+        $(INSTALL_BIN) $(FILES_DIR)/cgminer.dragon.init           $(1)/etc/init.d/cgminer
+        $(CP)          $(FILES_DIR)/cgminer.dragon.config         $(1)/etc/config/cgminer
+        $(INSTALL_BIN)          $(FILES_DIR)/mm-dmaxl-upgrade     $(1)/usr/bin/mmupgrade
+endif
+
+
 endef
 
 $(eval $(call BuildPackage,cgminer))
