@@ -19,7 +19,7 @@ else
 endif
 ifeq ($(CONFIG_CGMINER_GEKKO),y)
 	PKG_VERSION:=git-$(shell git ls-remote https://github.com/wareck/cgminer-gekko.git master | cut -f1 | cut -c1-7)
-	PKG_REV:=2796394ca36bf3ce85be3790f3223b34f7729cef
+	PKG_REV:=f76b05a8d3fb17458efffd7a61588c2eb0bf8232
 endif
 
 ifeq ($(CONFIG_CGMINER_DRAGON),y)
