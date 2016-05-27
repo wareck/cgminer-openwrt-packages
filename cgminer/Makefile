@@ -142,18 +142,21 @@ ifeq ($(CONFIG_CGMINER_AVALON4),y)
 	$(CP)          $(FILES_DIR)/cgminer.avalon4.config         $(1)/etc/config/cgminer
 	$(INSTALL_BIN)          $(FILES_DIR)/mm-avalon4-upgrade    $(1)/usr/bin/mmupgrade
 endif
+
 ifeq ($(CONFIG_CGMINER_GEKKO),y)
 	$(INSTALL_BIN) $(FILES_DIR)/cgminer-gekko-monitor        $(1)/usr/bin/cgminer-monitor
 	$(INSTALL_BIN) $(FILES_DIR)/cgminer.gekko.init           $(1)/etc/init.d/cgminer
 	$(CP)          $(FILES_DIR)/cgminer.gekko.config         $(1)/etc/config/cgminer
 	$(INSTALL_BIN)          $(FILES_DIR)/mm-dmaxl-upgrade    $(1)/usr/bin/mmupgrade
 endif
+
 ifeq ($(CONFIG_CGMINER_DRAGON),y)
         $(INSTALL_BIN) $(FILES_DIR)/cgminer-dragon-monitor        $(1)/usr/bin/cgminer-monitor
         $(INSTALL_BIN) $(FILES_DIR)/cgminer.dragon.init           $(1)/etc/init.d/cgminer
         $(CP)          $(FILES_DIR)/cgminer.dragon.config         $(1)/etc/config/cgminer
         $(INSTALL_BIN)          $(FILES_DIR)/mm-dmaxl-upgrade     $(1)/usr/bin/mmupgrade
 endif
+
 ifeq ($(CONFIG_CGMINER_ROCKMINER),y)
         $(INSTALL_BIN) $(FILES_DIR)/cgminer-rockminer-monitor        $(1)/usr/bin/cgminer-monitor
         $(INSTALL_BIN) $(FILES_DIR)/cgminer.rockminer.init           $(1)/etc/init.d/cgminer
@@ -161,4 +164,3 @@ ifeq ($(CONFIG_CGMINER_ROCKMINER),y)
         $(INSTALL_BIN)          $(FILES_DIR)/mm-dmaxl-upgrade    $(1)/usr/bin/mmupgrade
 endif
 endef
-$(eval $(call BuildPackage,cgminer))
