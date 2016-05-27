@@ -103,7 +103,7 @@ ifeq ($(CONFIG_CGMINER_DRAGON),y)
         CONFIGURE_ARGS += --enable-zeus --enable-lketc --enable-scrypt
 endif
 ifeq ($(CONFIG_CGMINER_ROCKMINER),y)
-        CONFIGURE_ARGS += --enable-bflsc
+        CONFIGURE_ARGS += 
 endif
 
 ifeq ($(CONFIG_TARGET_brcm2708_RaspberryPi),)
@@ -154,12 +154,11 @@ ifeq ($(CONFIG_CGMINER_DRAGON),y)
         $(CP)          $(FILES_DIR)/cgminer.dragon.config         $(1)/etc/config/cgminer
         $(INSTALL_BIN)          $(FILES_DIR)/mm-dmaxl-upgrade     $(1)/usr/bin/mmupgrade
 endif
-
 ifeq ($(CONFIG_CGMINER_ROCKMINER),y)
         $(INSTALL_BIN) $(FILES_DIR)/cgminer-rockminer-monitor        $(1)/usr/bin/cgminer-monitor
         $(INSTALL_BIN) $(FILES_DIR)/cgminer.rockminer.init           $(1)/etc/init.d/cgminer
         $(CP)          $(FILES_DIR)/cgminer.rockminer.config         $(1)/etc/config/cgminer
-        $(INSTALL_BIN)          $(FILES_DIR)/mm-dmaxl-upgrade     $(1)/usr/bin/mmupgrade
+        $(INSTALL_BIN)          $(FILES_DIR)/mm-dmaxl-upgrade        $(1)/usr/bin/mmupgrade
 endif
 
 endef
