@@ -158,9 +158,7 @@ ifeq ($(CONFIG_CGMINER_ROCKMINER),y)
         $(INSTALL_BIN) $(FILES_DIR)/cgminer-rockminer-monitor        $(1)/usr/bin/cgminer-monitor
         $(INSTALL_BIN) $(FILES_DIR)/cgminer.rockminer.init           $(1)/etc/init.d/cgminer
         $(CP)          $(FILES_DIR)/cgminer.rockminer.config         $(1)/etc/config/cgminer
-        $(INSTALL_BIN)          $(FILES_DIR)/mm-dmaxl-upgrade        $(1)/usr/bin/mmupgrade
+        $(INSTALL_BIN)          $(FILES_DIR)/mm-dmaxl-upgrade    $(1)/usr/bin/mmupgrade
 endif
-
 endef
-
 $(eval $(call BuildPackage,cgminer))
