@@ -27,6 +27,12 @@ ifeq ($(CONFIG_CGMINER_DRAGON),y)
         PKG_REV:=a45c83d718fce7b539575144832e887773bc4e5e
 endif
 
+ifeq ($(CONFIG_CGMINER_ROCKMINER),y)
+        PKG_VERSION:=git-$(shell git ls-remote https://github.com/ckolivas/cgminer.git master | cut -f1 | cut -c1-7)
+        PKG_REV:=03f0aa2c3e1be38419f93ca87aea1724087cd70d
+endif
+
+
 PKG_RELEASE:=1
 PKG_INSTALL:=1
 
@@ -41,6 +47,9 @@ ifeq ($(CONFIG_CGMINER_GEKKO),y)
 endif
 ifeq ($(CONFIG_CGMINER_DRAGON),y)
         PKG_SOURCE_URL:=git://github.com/wareck/cgminer-dmaxl-zeus.git
+endif
+ifeq ($(CONFIG_CGMINER_ROCKMINER),y)
+        PKG_SOURCE_URL:=git://github.com/ckolivas/cgminer.git
 endif
 
 PKG_SOURCE_PROTO:=git
@@ -95,6 +104,11 @@ ifeq ($(CONFIG_CGMINER_DRAGON),y)
         CONFIGURE_ARGS += --enable-zeus --enable-lketc --enable-scrypt
 endif
 
+ifeq ($(CONFIG_CGMINER_DRAGON),y)
+        CONFIGURE_ARGS += --enable-rockminer
+endif
+
+
 ifeq ($(CONFIG_TARGET_brcm2708_RaspberryPi),)
 	CONFIGURE_ARGS += --without-curses
 endif
@@ -144,6 +158,12 @@ ifeq ($(CONFIG_CGMINER_DRAGON),y)
         $(INSTALL_BIN)          $(FILES_DIR)/mm-dmaxl-upgrade     $(1)/usr/bin/mmupgrade
 endif
 
+ifeq ($(CONFIG_CGMINER_ROCKMINER),y)
+        $(INSTALL_BIN) $(FILES_DIR)/cgminer-rockminer-monitor        $(1)/usr/bin/cgminer-monitor
+        $(INSTALL_BIN) $(FILES_DIR)/cgminer.rockminer.init           $(1)/etc/init.d/cgminer
+        $(CP)          $(FILES_DIR)/cgminer.rockminer.config         $(1)/etc/config/cgminer
+        $(INSTALL_BIN)          $(FILES_DIR)/mm-dmaxl-upgrade     $(1)/usr/bin/mmupgrade
+endif
 
 endef
 
