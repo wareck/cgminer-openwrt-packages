@@ -99,15 +99,12 @@ endif
 ifeq ($(CONFIG_CGMINER_GEKKO),y)
 	CONFIGURE_ARGS += --enable-gekko --enable-bflsc --enable-bitfury
 endif
-
 ifeq ($(CONFIG_CGMINER_DRAGON),y)
         CONFIGURE_ARGS += --enable-zeus --enable-lketc --enable-scrypt
 endif
-
 ifeq ($(CONFIG_CGMINER_ROCKMINER),y)
         CONFIGURE_ARGS += --enable-bflsc
 endif
-
 
 ifeq ($(CONFIG_TARGET_brcm2708_RaspberryPi),)
 	CONFIGURE_ARGS += --without-curses
