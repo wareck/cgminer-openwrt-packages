@@ -11,7 +11,5 @@ config CGMINER_AVALON6
 	bool "Enable Avalon6(A3218) support"
 config CGMINER_GEKKO
 	bool "Enable Gekko support"
-config CGMINER_DRAGON
-	bool "Enable LKETC support"
 config CGMINER_ROCKMINER
 	bool "Enable Rockminer support"
