@@ -104,8 +104,8 @@ ifeq ($(CONFIG_CGMINER_DRAGON),y)
         CONFIGURE_ARGS += --enable-zeus --enable-lketc --enable-scrypt
 endif
 
-ifeq ($(CONFIG_CGMINER_DRAGON),y)
-        CONFIGURE_ARGS += --enable-rockminer
+ifeq ($(CONFIG_CGMINER_ROCKMINER),y)
+        CONFIGURE_ARGS += --enable-bflsc
 endif
 
 
