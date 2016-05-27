@@ -46,10 +46,10 @@ ifeq ($(CONFIG_CGMINER_GEKKO),y)
 	PKG_SOURCE_URL:=git://github.com/wareck/cgminer-gekko.git
 endif
 ifeq ($(CONFIG_CGMINER_DRAGON),y)
-        PKG_SOURCE_URL:=git://github.com/wareck/cgminer-dmaxl-zeus.git
+    PKG_SOURCE_URL:=git://github.com/wareck/cgminer-dmaxl-zeus.git
 endif
 ifeq ($(CONFIG_CGMINER_ROCKMINER),y)
-        PKG_SOURCE_URL:=git://github.com/ckolivas/cgminer.git
+     PKG_SOURCE_URL:=git://github.com/ckolivas/cgminer.git
 endif
 
 PKG_SOURCE_PROTO:=git
@@ -103,7 +103,7 @@ ifeq ($(CONFIG_CGMINER_DRAGON),y)
         CONFIGURE_ARGS += --enable-zeus --enable-lketc --enable-scrypt
 endif
 ifeq ($(CONFIG_CGMINER_ROCKMINER),y)
-        CONFIGURE_ARGS += 
+        CONFIGURE_ARGS +=  --enable-bflsc
 endif
 
 ifeq ($(CONFIG_TARGET_brcm2708_RaspberryPi),)
@@ -140,7 +140,7 @@ ifeq ($(CONFIG_CGMINER_AVALON4),y)
 	$(INSTALL_BIN) $(FILES_DIR)/cgminer-avalon4-monitor        $(1)/usr/bin/cgminer-monitor
 	$(INSTALL_BIN) $(FILES_DIR)/cgminer.avalon4.init           $(1)/etc/init.d/cgminer
 	$(CP)          $(FILES_DIR)/cgminer.avalon4.config         $(1)/etc/config/cgminer
-	$(INSTALL_BIN)          $(FILES_DIR)/mm-avalon4-upgrade    $(1)/usr/bin/mmupgrade
+	$(INSTALL_BIN)          $(FILES_DIR)/mm-avalon4-upgrade             $(1)/usr/bin/mmupgrade
 endif
 
 ifeq ($(CONFIG_CGMINER_GEKKO),y)
@@ -164,3 +164,5 @@ ifeq ($(CONFIG_CGMINER_ROCKMINER),y)
         $(INSTALL_BIN)          $(FILES_DIR)/mm-dmaxl-upgrade    $(1)/usr/bin/mmupgrade
 endif
 endef
+
+$(eval $(call BuildPackage,cgminer))
