@@ -39,8 +39,7 @@ else
 endif
 ifeq ($(CONFIG_CGMINER_GEKKO),y)
 	PKG_SOURCE_URL:=git://github.com/wareck/cgminer-gekko.git
-endif
-ifeq ($(CONFIG_CGMINER_ROCKMINER),y)
+else ifeq ($(CONFIG_CGMINER_ROCKMINER),y)
         PKG_SOURCE_URL:=git://github.com/wareck/cgminer-gekko.git
 endif
 
