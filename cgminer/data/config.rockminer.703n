@@ -34,7 +34,7 @@ CONFIG_PACKAGE_luci-app-cgminer=y
 # CONFIG_PACKAGE_odhcp6c is not set
 # CONFIG_DEFAULT_uboot-envtools is not set
 CONFIG_PACKAGE_cgminer=y
-CONFIG_CGMINER_ROCKMINER=y
+CONFIG_CGMINER_rockminer=y
 CONFIG_PACKAGE_mm-tools=y
 
 # CONFIG_LIBCURL_POLARSSL is not set
