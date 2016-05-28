@@ -34,10 +34,7 @@ PKG_INSTALL:=1
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_REV).tar.bz2
 ifeq ($(CONFIG_CGMINER_AVALON4),y)
 	PKG_SOURCE_URL:=git://github.com/wareck/cgminer-gekko.git
-else
-	PKG_SOURCE_URL:=git://github.com/ckolivas/cgminer.git
-endif
-ifeq ($(CONFIG_CGMINER_GEKKO),y)
+else ifeq ($(CONFIG_CGMINER_GEKKO),y)
 	PKG_SOURCE_URL:=git://github.com/wareck/cgminer-gekko.git
 else ifeq ($(CONFIG_CGMINER_ROCKMINER),y)
         PKG_SOURCE_URL:=git://github.com/wareck/cgminer-gekko.git
@@ -130,11 +127,13 @@ else ifeq ($(CONFIG_CGMINER_AVALON4),y)
 	$(INSTALL_BIN) $(FILES_DIR)/cgminer.avalon4.init           $(1)/etc/init.d/cgminer
 	$(CP)          $(FILES_DIR)/cgminer.avalon4.config         $(1)/etc/config/cgminer
 	$(INSTALL_BIN)          $(FILES_DIR)/mm-avalon4-upgrade             $(1)/usr/bin/mmupgrade
+
 else ifeq ($(CONFIG_CGMINER_GEKKO),y)
 	$(INSTALL_BIN) $(FILES_DIR)/cgminer-gekko-monitor        $(1)/usr/bin/cgminer-monitor
 	$(INSTALL_BIN) $(FILES_DIR)/cgminer.gekko.init           $(1)/etc/init.d/cgminer
 	$(CP)          $(FILES_DIR)/cgminer.gekko.config         $(1)/etc/config/cgminer
 	$(INSTALL_BIN)          $(FILES_DIR)/mm-dmaxl-upgrade    $(1)/usr/bin/mmupgrade
+
 else ifeq ($(CONFIG_CGMINER_ROCKMINER),y)
         $(INSTALL_BIN) $(FILES_DIR)/cgminer-rockminer-monitor        $(1)/usr/bin/cgminer-monitor
         $(INSTALL_BIN) $(FILES_DIR)/cgminer.rockminer.init           $(1)/etc/init.d/cgminer
