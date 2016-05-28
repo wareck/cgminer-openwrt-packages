@@ -19,11 +19,12 @@ else
 endif
 ifeq ($(CONFIG_CGMINER_GEKKO),y)
 	PKG_VERSION:=git-$(shell git ls-remote https://github.com/wareck/cgminer-gekko.git master | cut -f1 | cut -c1-7)
-	PKG_REV:=f76b05a8d3fb17458efffd7a61588c2eb0bf8232
+	PKG_REV:=f8b12c8f424ef11d65be425db243416e9d0ef1d3
 endif
 ifeq ($(CONFIG_CGMINER_ROCKMINER),y)
         PKG_VERSION:=git-$(shell git ls-remote https://github.com/wareck/cgminer-gekko.git master | cut -f1 | cut -c1-7)
-        PKG_REV:=f76b05a8d3fb17458efffd7a61588c2eb0bf8232
+        PKG_REV:=f8b12c8f424ef11d65be425db243416e9d0ef1d3
+	PKG_VERSION:=4.9.2
 endif
 
 
@@ -94,7 +95,7 @@ ifeq ($(CONFIG_CGMINER_DRAGON),y)
         CONFIGURE_ARGS += --enable-zeus --enable-lketc --enable-scrypt
 endif
 ifeq ($(CONFIG_CGMINER_ROCKMINER),y)
-        CONFIGURE_ARGS += --enable-bflsc --enable-bitfury
+        CONFIGURE_ARGS += --enable-icarus --disable-avalon4 --enable-bflsc --enable-bitfury
 endif
 
 ifeq ($(CONFIG_TARGET_brcm2708_RaspberryPi),)
@@ -119,28 +120,23 @@ ifeq ($(CONFIG_CGMINER_AVALON1),y)
 	$(INSTALL_BIN) $(FILES_DIR)/cgminer-avalon1-monitor        $(1)/usr/bin/cgminer-monitor
 	$(INSTALL_BIN) $(FILES_DIR)/cgminer.avalon1.init           $(1)/etc/init.d/cgminer
 	$(CP)          $(FILES_DIR)/cgminer.avalon1.config         $(1)/etc/config/cgminer
-endif
 
-ifeq ($(CONFIG_CGMINER_AVALON2),y)
+else ifeq ($(CONFIG_CGMINER_AVALON2),y)
 	$(INSTALL_BIN) $(FILES_DIR)/cgminer-avalon2-monitor        $(1)/usr/bin/cgminer-monitor
 	$(INSTALL_BIN) $(FILES_DIR)/cgminer.avalon2.init           $(1)/etc/init.d/cgminer
 	$(CP)          $(FILES_DIR)/cgminer.avalon2.config         $(1)/etc/config/cgminer
-endif
 
-ifeq ($(CONFIG_CGMINER_AVALON4),y)
+else ifeq ($(CONFIG_CGMINER_AVALON4),y)
 	$(INSTALL_BIN) $(FILES_DIR)/cgminer-avalon4-monitor        $(1)/usr/bin/cgminer-monitor
 	$(INSTALL_BIN) $(FILES_DIR)/cgminer.avalon4.init           $(1)/etc/init.d/cgminer
 	$(CP)          $(FILES_DIR)/cgminer.avalon4.config         $(1)/etc/config/cgminer
 	$(INSTALL_BIN)          $(FILES_DIR)/mm-avalon4-upgrade             $(1)/usr/bin/mmupgrade
-endif
-
-ifeq ($(CONFIG_CGMINER_GEKKO),y)
+else ifeq ($(CONFIG_CGMINER_GEKKO),y)
 	$(INSTALL_BIN) $(FILES_DIR)/cgminer-gekko-monitor        $(1)/usr/bin/cgminer-monitor
 	$(INSTALL_BIN) $(FILES_DIR)/cgminer.gekko.init           $(1)/etc/init.d/cgminer
 	$(CP)          $(FILES_DIR)/cgminer.gekko.config         $(1)/etc/config/cgminer
 	$(INSTALL_BIN)          $(FILES_DIR)/mm-dmaxl-upgrade    $(1)/usr/bin/mmupgrade
-endif
-ifeq ($(CONFIG_CGMINER_ROCKMINER),y)
+else ifeq ($(CONFIG_CGMINER_ROCKMINER),y)
         $(INSTALL_BIN) $(FILES_DIR)/cgminer-gekko-monitor        $(1)/usr/bin/cgminer-monitor
         $(INSTALL_BIN) $(FILES_DIR)/cgminer.gekko.init           $(1)/etc/init.d/cgminer
         $(CP)          $(FILES_DIR)/cgminer.gekko.config         $(1)/etc/config/cgminer
