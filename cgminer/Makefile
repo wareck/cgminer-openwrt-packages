@@ -10,13 +10,13 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=cgminer
 
-ifeq ($(CONFIG_CGMINER_AVALON4),y)
-	PKG_VERSION:=git-$(shell git ls-remote https://github.com/csa402/cgminer-gekko avalon4 | cut -f1 | cut -c1-7)
-	PKG_REV:=avalon4
-else
-	PKG_VERSION:=4.6.0
-	PKG_REV:=06b44fcc2ed64a3e0d8288287d28176132433642
-endif
+#ifeq ($(CONFIG_CGMINER_AVALON4),y)
+#	PKG_VERSION:=git-$(shell git ls-remote https://github.com/csa402/cgminer-gekko avalon4 | cut -f1 | cut -c1-7)
+#	PKG_REV:=avalon4
+#else
+#	PKG_VERSION:=4.6.0
+#	PKG_REV:=06b44fcc2ed64a3e0d8288287d28176132433642
+#endif
 ifeq ($(CONFIG_CGMINER_GEKKO),y)
 	PKG_VERSION:=git-$(shell git ls-remote https://github.com/wareck/cgminer-gekko.git master | cut -f1 | cut -c1-7)
 	PKG_REV:=f8b12c8f424ef11d65be425db243416e9d0ef1d3
@@ -24,7 +24,6 @@ endif
 ifeq ($(CONFIG_CGMINER_ROCKMINER),y)
         PKG_VERSION:=git-$(shell git ls-remote https://github.com/wareck/cgminer-gekko.git master | cut -f1 | cut -c1-7)
         PKG_REV:=f8b12c8f424ef11d65be425db243416e9d0ef1d3
-	PKG_VERSION:=4.9.2
 endif
 
 
@@ -34,9 +33,11 @@ PKG_INSTALL:=1
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_REV).tar.bz2
 ifeq ($(CONFIG_CGMINER_AVALON4),y)
 	PKG_SOURCE_URL:=git://github.com/wareck/cgminer-gekko.git
-else ifeq ($(CONFIG_CGMINER_GEKKO),y)
+endif
+ifeq ($(CONFIG_CGMINER_GEKKO),y)
 	PKG_SOURCE_URL:=git://github.com/wareck/cgminer-gekko.git
-else ifeq ($(CONFIG_CGMINER_ROCKMINER),y)
+endif
+ifeq ($(CONFIG_CGMINER_ROCKMINER),y)
         PKG_SOURCE_URL:=git://github.com/wareck/cgminer-gekko.git
 endif
 
@@ -116,24 +117,24 @@ ifeq ($(CONFIG_CGMINER_AVALON1),y)
 	$(INSTALL_BIN) $(FILES_DIR)/cgminer-avalon1-monitor        $(1)/usr/bin/cgminer-monitor
 	$(INSTALL_BIN) $(FILES_DIR)/cgminer.avalon1.init           $(1)/etc/init.d/cgminer
 	$(CP)          $(FILES_DIR)/cgminer.avalon1.config         $(1)/etc/config/cgminer
-
+endif
 else ifeq ($(CONFIG_CGMINER_AVALON2),y)
 	$(INSTALL_BIN) $(FILES_DIR)/cgminer-avalon2-monitor        $(1)/usr/bin/cgminer-monitor
 	$(INSTALL_BIN) $(FILES_DIR)/cgminer.avalon2.init           $(1)/etc/init.d/cgminer
 	$(CP)          $(FILES_DIR)/cgminer.avalon2.config         $(1)/etc/config/cgminer
-
+endif
 else ifeq ($(CONFIG_CGMINER_AVALON4),y)
 	$(INSTALL_BIN) $(FILES_DIR)/cgminer-avalon4-monitor        $(1)/usr/bin/cgminer-monitor
 	$(INSTALL_BIN) $(FILES_DIR)/cgminer.avalon4.init           $(1)/etc/init.d/cgminer
 	$(CP)          $(FILES_DIR)/cgminer.avalon4.config         $(1)/etc/config/cgminer
 	$(INSTALL_BIN)          $(FILES_DIR)/mm-avalon4-upgrade             $(1)/usr/bin/mmupgrade
-
+endif
 else ifeq ($(CONFIG_CGMINER_GEKKO),y)
 	$(INSTALL_BIN) $(FILES_DIR)/cgminer-gekko-monitor        $(1)/usr/bin/cgminer-monitor
 	$(INSTALL_BIN) $(FILES_DIR)/cgminer.gekko.init           $(1)/etc/init.d/cgminer
 	$(CP)          $(FILES_DIR)/cgminer.gekko.config         $(1)/etc/config/cgminer
 	$(INSTALL_BIN)          $(FILES_DIR)/mm-dmaxl-upgrade    $(1)/usr/bin/mmupgrade
-
+endif
 else ifeq ($(CONFIG_CGMINER_ROCKMINER),y)
         $(INSTALL_BIN) $(FILES_DIR)/cgminer-rockminer-monitor        $(1)/usr/bin/cgminer-monitor
         $(INSTALL_BIN) $(FILES_DIR)/cgminer.rockminer.init           $(1)/etc/init.d/cgminer
