@@ -20,10 +20,12 @@ PKG_NAME:=cgminer
 ifeq ($(CONFIG_CGMINER_GEKKO),y)
 	PKG_VERSION:=git-$(shell git ls-remote https://github.com/wareck/cgminer-gekko.git master | cut -f1 | cut -c1-7)
 	PKG_REV:=f8b12c8f424ef11d65be425db243416e9d0ef1d3
+	PKG_VERSION:=4.9.2
 endif
 ifeq ($(CONFIG_CGMINER_ROCKMINER),y)
         PKG_VERSION:=git-$(shell git ls-remote https://github.com/wareck/cgminer-gekko.git master | cut -f1 | cut -c1-7)
         PKG_REV:=f8b12c8f424ef11d65be425db243416e9d0ef1d3
+	PKG_VERSION:=4.9.2
 endif
 
 
