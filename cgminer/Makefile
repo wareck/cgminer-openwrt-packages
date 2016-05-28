@@ -95,7 +95,7 @@ ifeq ($(CONFIG_CGMINER_DRAGON),y)
         CONFIGURE_ARGS += --enable-zeus --enable-lketc --enable-scrypt
 endif
 ifeq ($(CONFIG_CGMINER_ROCKMINER),y)
-        CONFIGURE_ARGS += --enable-icarus --disable-avalon4 --enable-bflsc --enable-bitfury
+        CONFIGURE_ARGS += --enable-icarus --disable-avalon4
 endif
 
 ifeq ($(CONFIG_TARGET_brcm2708_RaspberryPi),)
@@ -137,9 +137,9 @@ else ifeq ($(CONFIG_CGMINER_GEKKO),y)
 	$(CP)          $(FILES_DIR)/cgminer.gekko.config         $(1)/etc/config/cgminer
 	$(INSTALL_BIN)          $(FILES_DIR)/mm-dmaxl-upgrade    $(1)/usr/bin/mmupgrade
 else ifeq ($(CONFIG_CGMINER_ROCKMINER),y)
-        $(INSTALL_BIN) $(FILES_DIR)/cgminer-gekko-monitor        $(1)/usr/bin/cgminer-monitor
-        $(INSTALL_BIN) $(FILES_DIR)/cgminer.gekko.init           $(1)/etc/init.d/cgminer
-        $(CP)          $(FILES_DIR)/cgminer.gekko.config         $(1)/etc/config/cgminer
+        $(INSTALL_BIN) $(FILES_DIR)/cgminer-rockminer-monitor        $(1)/usr/bin/cgminer-monitor
+        $(INSTALL_BIN) $(FILES_DIR)/cgminer.rockminer.init           $(1)/etc/init.d/cgminer
+        $(CP)          $(FILES_DIR)/cgminer.rockminer.config         $(1)/etc/config/cgminer
         $(INSTALL_BIN)          $(FILES_DIR)/mm-dmaxl-upgrade    $(1)/usr/bin/mmupgrade
 endif
 endef
