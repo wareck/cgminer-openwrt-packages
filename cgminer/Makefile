@@ -35,6 +35,9 @@ endif
 ifeq ($(CONFIG_CGMINER_GEKKO),y)
 	PKG_SOURCE_URL:=git://github.com/wareck/cgminer-gekko.git
 endif
+ifeq ($(CONFIG_CGMINER_X11),y)
+        PKG_SOURCE_URL:=git://github.com/wareck/cgminer-gekko.git
+endif
 ifeq ($(CONFIG_CGMINER_ROCKMINER),y)
         PKG_SOURCE_URL:=git://github.com/wareck/cgminer-gekko.git
 endif
@@ -92,7 +95,9 @@ endif
 ifeq ($(CONFIG_CGMINER_ROCKMINER),y)
         CONFIGURE_ARGS += --enable-icarus --disable-avalon4
 endif
-
+ifeq ($(CONFIG_CGMINER_GEKKO),y)
+        CONFIGURE_ARGS += --enable-icarus --disable-avalon4
+endif
 ifeq ($(CONFIG_TARGET_brcm2708_RaspberryPi),)
 	CONFIGURE_ARGS += --without-curses
 endif
@@ -136,6 +141,11 @@ ifeq ($(CONFIG_CGMINER_ROCKMINER),y)
 	$(INSTALL_BIN) $(FILES_DIR)/cgminer-rockminer-monitor      $(1)/usr/bin/cgminer-monitor
 	$(INSTALL_BIN) $(FILES_DIR)/cgminer.rockminer.init         $(1)/etc/init.d/cgminer
 	$(CP)          $(FILES_DIR)/cgminer.rockminer.config       $(1)/etc/config/cgminer
+endif
+ifeq ($(CONFIG_CGMINER_X11),y)
+        $(INSTALL_BIN) $(FILES_DIR)/cgminer-x11-monitor      $(1)/usr/bin/cgminer-monitor
+        $(INSTALL_BIN) $(FILES_DIR)/cgminer.x11.init         $(1)/etc/init.d/cgminer
+        $(CP)          $(FILES_DIR)/cgminer.x11.config       $(1)/etc/config/cgminer
 endif
 endef
 
