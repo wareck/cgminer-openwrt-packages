@@ -90,7 +90,7 @@ ifeq ($(CONFIG_CGMINER_GEKKO),y)
 	CONFIGURE_ARGS += --enable-gekko --enable-bflsc --enable-bitfury
 endif
 ifeq ($(CONFIG_CGMINER_DRAGON),y)
-        CONFIGURE_ARGS += --enable-zeus --enable-lketc --enable-scrypt
+        CONFIGURE_ARGS += --enable-zeus --enable-lketc --enable-scrypt --enable-gridseed
 endif
 ifeq ($(CONFIG_CGMINER_ROCKMINER),y)
         CONFIGURE_ARGS += --enable-icarus --disable-avalon4
