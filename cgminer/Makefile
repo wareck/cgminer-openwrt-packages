@@ -87,20 +87,14 @@ endif
 ifeq ($(CONFIG_CGMINER_AVALON4),y)
 	CONFIGURE_ARGS += --enable-avalon4
 endif
-ifeq ($(CONFIG_CGMINER_GEKKO),y)
-	CONFIGURE_ARGS += --enable-gekko --enable-bflsc --enable-bitfury
-endif
 ifeq ($(CONFIG_CGMINER_DRAGON),y)
         CONFIGURE_ARGS += --enable-zeus --enable-lketc --enable-scrypt --enable-gridseed
-endif
-ifeq ($(CONFIG_CGMINER_ROCKMINER),y)
-        CONFIGURE_ARGS += --enable-icarus --disable-avalon4
 endif
 ifeq ($(CONFIG_CGMINER_GEKKO),y)
         CONFIGURE_ARGS += --enable-icarus --disable-avalon4
 endif
 ifeq ($(CONFIG_CGMINER_BITMAIN),y)
-        CONFIGURE_ARGS += --without-curses --enable-ants3
+	CONFIGURE_ARGS += --without-curses --enable-ants3
 endif
 
 ifeq ($(CONFIG_TARGET_brcm2708_RaspberryPi),)
