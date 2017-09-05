@@ -1,18 +1,23 @@
 config CGMINER_AVALON1
 	bool "Enable Avalon1(A3256) support"
 	default n
+
 config CGMINER_AVALON2
 	bool "Enable Avalon2(A3255)/Avalon3(A3233) support"
 	default n
+
 config CGMINER_AVALON4
 	bool "Enable Avalon4(A3222) support"
-	default y
+	default n
+
 config CGMINER_AVALON6
 	bool "Enable Avalon6(A3218) support"
 	default n
+
 config CGMINER_GEKKO
 	bool "Enable Gekko support"
 	default n
+
 config CGMINER_BITMAIN
 	bool "enable BitmainS3 support"
-	default n
+	default y
