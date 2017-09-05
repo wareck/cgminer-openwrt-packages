@@ -25,16 +25,19 @@ PKG_NAME:=cgminer
 #        PKG_REV:=f8b12c8f424ef11d65be425db243416e9d0ef1d3
 #endif
 
+PKG_VERSION:=4.9.2
+PKG_REV:=0534e22ddbed24c87ea437ac47a787a07dcbdbca
+
 PKG_RELEASE:=1
 PKG_INSTALL:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_REV).tar.bz2
-ifeq ($(CONFIG_CGMINER_AVALON4),y)
-	PKG_SOURCE_URL:=git://github.com/wareck/cgminer-gekko.git
-endif
-ifeq ($(CONFIG_CGMINER_GEKKO),y)
-	PKG_SOURCE_URL:=git://github.com/wareck/cgminer-gekko.git
-endif
+#ifeq ($(CONFIG_CGMINER_AVALON4),y)
+#	PKG_SOURCE_URL:=git://github.com/wareck/cgminer-gekko.git
+#endif
+#ifeq ($(CONFIG_CGMINER_GEKKO),y)
+#	PKG_SOURCE_URL:=git://github.com/wareck/cgminer-gekko.git
+#endif
 ifeq ($(CONFIG_CGMINER_BITMAIN),y)
 	PKG_SOURCE_URL:=git://github.com/csa402/cgminer-ants3.git
 endif
@@ -84,10 +87,10 @@ ifeq ($(CONFIG_CGMINER_AVALON4),y)
 	CONFIGURE_ARGS += --enable-avalon4
 endif
 ifeq ($(CONFIG_CGMINER_DRAGON),y)
-        CONFIGURE_ARGS += --enable-zeus --enable-lketc --enable-scrypt --enable-gridseed
+	CONFIGURE_ARGS += --enable-zeus --enable-lketc --enable-scrypt --enable-gridseed
 endif
 ifeq ($(CONFIG_CGMINER_GEKKO),y)
-        CONFIGURE_ARGS += --enable-icarus --disable-avalon4
+	CONFIGURE_ARGS += --enable-icarus --disable-avalon4
 endif
 ifeq ($(CONFIG_CGMINER_BITMAIN),y)
 	CONFIGURE_ARGS += --without-curses --enable-ants3
@@ -138,14 +141,14 @@ ifeq ($(CONFIG_CGMINER_ROCKMINER),y)
 	$(CP)          $(FILES_DIR)/cgminer.rockminer.config       $(1)/etc/config/cgminer
 endif
 ifeq ($(CONFIG_CGMINER_X11),y)
-        $(INSTALL_BIN) $(FILES_DIR)/cgminer-x11-monitor      $(1)/usr/bin/cgminer-monitor
-        $(INSTALL_BIN) $(FILES_DIR)/cgminer.x11.init         $(1)/etc/init.d/cgminer
-        $(CP)          $(FILES_DIR)/cgminer.x11.config       $(1)/etc/config/cgminer
+	$(INSTALL_BIN) $(FILES_DIR)/cgminer-x11-monitor      $(1)/usr/bin/cgminer-monitor
+	$(INSTALL_BIN) $(FILES_DIR)/cgminer.x11.init         $(1)/etc/init.d/cgminer
+	$(CP)          $(FILES_DIR)/cgminer.x11.config       $(1)/etc/config/cgminer
 endif
 ifeq ($(CONFIG_CGMINER_BITMAIN),y)
-        $(INSTALL_BIN) $(FILES_DIR)/cgminer-bitmain-monitor      $(1)/usr/bin/cgminer-monitor
-        $(INSTALL_BIN) $(FILES_DIR)/cgminer.bitmain.init         $(1)/etc/init.d/cgminer
-        $(CP)          $(FILES_DIR)/cgminer.bitmain.config       $(1)/etc/config/cgminer
+	$(INSTALL_BIN) $(FILES_DIR)/cgminer-bitmain-monitor      $(1)/usr/bin/cgminer-monitor
+	$(INSTALL_BIN) $(FILES_DIR)/cgminer.bitmain.init         $(1)/etc/init.d/cgminer
+	$(CP)          $(FILES_DIR)/cgminer.bitmain.config       $(1)/etc/config/cgminer
 endif
 
 endef
