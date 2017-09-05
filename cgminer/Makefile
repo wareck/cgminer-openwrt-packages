@@ -43,6 +43,7 @@ ifeq ($(CONFIG_CGMINER_ROCKMINER),y)
 endif
 ifeq ($(CONFIG_CGMINER_BITMAIN),y)
 	PKG_SOURCE_URL:=git://github.com/csa402/cgminer-ants3.git
+endif
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
