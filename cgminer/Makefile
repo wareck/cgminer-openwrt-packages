@@ -41,6 +41,8 @@ endif
 ifeq ($(CONFIG_CGMINER_ROCKMINER),y)
         PKG_SOURCE_URL:=git://github.com/wareck/cgminer-gekko.git
 endif
+ifeq ($(CONFIG_CGMINER_BITMAIN),y)
+	PKG_SOURCE_URL:=git://github.com/csa402/cgminer-ants3.git
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
@@ -98,6 +100,10 @@ endif
 ifeq ($(CONFIG_CGMINER_GEKKO),y)
         CONFIGURE_ARGS += --enable-icarus --disable-avalon4
 endif
+ifeq ($(CONFIG_CGMINER_BITMAIN),y)
+        CONFIGURE_ARGS += --without-curses --enable-ants3
+endif
+
 ifeq ($(CONFIG_TARGET_brcm2708_RaspberryPi),)
 	CONFIGURE_ARGS += --without-curses
 endif
@@ -147,6 +153,12 @@ ifeq ($(CONFIG_CGMINER_X11),y)
         $(INSTALL_BIN) $(FILES_DIR)/cgminer.x11.init         $(1)/etc/init.d/cgminer
         $(CP)          $(FILES_DIR)/cgminer.x11.config       $(1)/etc/config/cgminer
 endif
+ifeq ($(CONFIG_CGMINER_BITMAIN),y)
+        $(INSTALL_BIN) $(FILES_DIR)/cgminer-bitmain-monitor      $(1)/usr/bin/cgminer-monitor
+        $(INSTALL_BIN) $(FILES_DIR)/cgminer.bitmain.init         $(1)/etc/init.d/cgminer
+        $(CP)          $(FILES_DIR)/cgminer.bitmain.config       $(1)/etc/config/cgminer
+endif
+
 endef
 
 $(eval $(call BuildPackage,cgminer))

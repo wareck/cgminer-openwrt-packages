@@ -9,7 +9,10 @@ config CGMINER_AVALON4
 	default y
 config CGMINER_AVALON6
 	bool "Enable Avalon6(A3218) support"
+	default n
 config CGMINER_GEKKO
 	bool "Enable Gekko support"
-config CGMINER_ROCKMINER
-	bool "Enable Rockminer support"
+	default n
+config CGMINER_BITMAIN
+	bool "enable BitmainS3 support"
+	default n
